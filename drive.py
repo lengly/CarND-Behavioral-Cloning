@@ -50,7 +50,7 @@ def telemetry(sid, data):
     # This model currently assumes that the features of the model are just the images. Feel free to change this.
     steering_angle = float(model.predict(transformed_image_array, batch_size=1))
     # The driving model currently just outputs a constant throttle. Feel free to edit this.
-    throttle = 0.5
+    throttle = max(0.1, -0.15/0.05 * abs(steering_angle) + 0.9)
     print(steering_angle, throttle)
     send_control(steering_angle, throttle)
 

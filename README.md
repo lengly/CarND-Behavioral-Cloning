@@ -95,17 +95,19 @@ The final model architecture (model.py lines 18-24) consisted of a convolution n
 
 I use the dataset which is provided by Udacity.
 
-Here are some steps I used to preprocess the data.
-
-**A.** There're three camera in the car. So there're three kinds of images in our dataset. For center image, we can just use them. For left images, we add 0.22 to the corresponding steering. And for right images, we add -0.22 to the corresponding steering.
-
-**B.** If you see the driving_log.csv file, most of the steering is 0. But it doesn't means we should go straight in such situation. So we randomly shared the image. Then there won't be too much images with 0 steerings.
-
-**C.** There're too many background in the image. For example, mountain, tree, and etc. We won't care them. So I remove 35 percent of the image from top, and 10 percent of the image from bottom.
-
-**D.** Most of our data is trun left. So we randomly flip the image in horizontal direction. Then our model'll know more about turn right.
-
-**E.** I resized the image to 128*128
+- Below are a few examples of the training set images and the corresponding steering angles s (in radians).
+![image](image/original_imgs.png)
+- There're three cameras in the car. So there're three kinds of images in our dataset. For center image, we can just use them. For left images, we add 0.22 to the corresponding steering. And for right images, we add -0.22 to the corresponding steering.
+![image](image/frames_original.png)
+- Next we see if the dataset is balanced. From the image below we see that most of the steering is 0. So we randomly shared the image. Then there won't be too much images with 0 steerings.
+![image](image/original_hist.png)
+Images before & after random shear.
+![image](image/shear.png)
+- There're too many background in the image. For example, mountain, tree, and etc. We won't care them. So I remove 35 percent of the image from top, and 10 percent of the image from bottom.
+![image](image/crop.png)
+- Most of our data is trun left. So we randomly flip the image in horizontal direction. Then our model'll know more about turn right.
+![image](image/flip.png)
+- At last, I resized the image to 128*128
 
 I use 20032 images for training, 6400 images for validation.
 
